@@ -27,7 +27,7 @@ import os
 
 current_language = os.getenv("LANG")[:5]
 
-msg = "Hello, friend"
+msg = "Olá, amigo"
 
 if current_language == "pt_BR":
     msg = "Olá, amigo"
@@ -37,6 +37,7 @@ elif current_language == "es_SP":
     msg = "Hola, mundo"
 elif current_language == "fr_FR":
     msg = "Bonjour monde"
-
+elif current_language == "en_US":
+    msg = "Hello, friend"
 
 print(msg)
