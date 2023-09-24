@@ -9,13 +9,11 @@ __author__ = "Anderson"
 numeros = list(range(1, 11))
 
 for numero in numeros:
-    tabuada = "---- Tabuada do {} ----"
+    tabuada = "-----Tabuada do {}-----"
     print(tabuada.format(numero))
     for outro_numero in numeros:
         resultado = numero * outro_numero
         calculo = "{:>7} x {} = {}"
-        print(calculo.format(numero, outro_numero, resultado))
-        
-        
+        print(calculo.format(numero, outro_numero, resultado))    
         
     print("{:=^23}".format(""))
