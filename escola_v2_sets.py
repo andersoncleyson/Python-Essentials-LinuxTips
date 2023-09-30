@@ -9,7 +9,7 @@ que frequentam cada uma das atividades.
 __version__ = "0.1.2"
 
 # Dados
-sala1 = ["Erik", "Maia", "Gustavo", "Manuel", "Sofia", "Joana"]
+sala1 = ["Erik", "Maria", "Gustavo", "Manuel", "Sofia", "Joana"]
 sala2 = ["João", "Antonio", "Carlos", "Maria", "Isolada"]
 
 aula_ingles = ["Erik", "Maria", "Joana", "Carlos", "Antonio"]
