@@ -17,11 +17,13 @@ $ prefixcal.py sum 4 2
 $ prefixcal.py mul 10 10
 100
 
+Os resultados serão salvos em `infixcalc.log`
 """
 
 __version__ = "0.1.0"
 
 import sys
+import os
 
 arguments = sys.argv[1:]
 
@@ -68,5 +70,11 @@ elif operation == "mul":
     result = n1 * n2
 elif operation == "div":
     result = n1 / n2
+
+path = os.curdir
+filepath = os.path.join(path, "infixcalc.log")
+
+with open(filepath, "a") as file_:
+    file_.write(f"{operation}, {n1},  {n2} = {result}\n")
 
 print("resultado =", result)
