@@ -2,18 +2,17 @@
 import os
 import sys
 
-#LBYL = Look Before You Leap
+# EAFP = Easy to ASK Forgiveness than permission
 
-if os.path.exists("names.txt"):
-    print("O arquivo existe")
-    input("...") ## RACE CONDITION
-    names = open("names.txt").readlines()
-else:
-    print("[Error] File names.txt not found.")
+try:
+    
+    names = open("names.txt").readlines() # FileNotFoundError
+except (FileNotFoundError, ZeroDivisionError) as e:
+    print(f"{str(e)}.")
     sys.exit(1)
 
-if len (names) >= 3:
+try:
     print(names[2])
-else:
+except:
     print("[Error] Missing name in the list")
     sys.exit(1)
