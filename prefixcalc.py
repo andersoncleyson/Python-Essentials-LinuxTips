@@ -28,7 +28,6 @@ from datetime import datetime
 
 arguments = sys.argv[1:]
 
-# TODO: Exceptions
 if not arguments:
     operation = input("Operação:")
     n1 = input("n1:")
@@ -60,7 +59,10 @@ for num in nums:
         num = int(num)
     validated_nums.append(num)
 
-n1, n2 = validated_nums
+try:
+    n1, n2 = validated_nums
+except ValueError as e:
+    print(f"[ERROR] {str(e)}")
 
 # TODO: Usar dict de funções
 if operation == "sum":
@@ -77,7 +79,11 @@ filepath = os.path.join(path, "infixcalc.log")
 timestamp = datetime.now().isoformat()
 user = os.getenv('USER', 'anonymous')
 
-with open(filepath, "a") as file_:
-    file_.write(f"{timestamp} - {user} - {operation}, {n1},  {n2} = {result}\n")
-
 print("resultado =", result) 
+try:    
+    with open(filepath, "a") as file_:
+        file_.write(f"{timestamp} - {user} - {operation}, {n1},  {n2} = {result}\n")
+except PermissionError as e:
+    # TODO: logging
+    print(f"{str(e)}")
+    sys.exit(1)
