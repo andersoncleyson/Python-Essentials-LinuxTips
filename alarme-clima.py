@@ -5,18 +5,23 @@ import sys
 
 log = logging.Logger("alerta")
 
-while True:
-    try:
-        temp = float(input("Qual a temperatura no momento? ").strip())
-    except ValueError:
-        log.error("Temperatura inválida")
-        sys.exit(1)
+info = {
+    "temperatura": None,
+    "umidade": None
+}
 
-    try:
-        umidade = float(input("Qual o indice de umidade do ar? ").strip())
-    except ValueError:
-        log.error("Umidade inválida")
-        sys.exit(1)
+
+while True:
+    for key in info.keys():
+        try:
+            #temp = float(input("Qual a temperatura no momento? ").strip())
+            info[key] = float(input(f"Qual a {key}? ").strip())
+        except ValueError:
+            log.error(f"{key.capitalize()} inválida")
+            sys.exit(1)
+
+    temp = info["temperatura"]
+    umidade = info["umidade"]
 
     if temp > 45:
         print("ALERTA! Perigo calor extremo")
@@ -30,7 +35,6 @@ while True:
         print("Frio extremo")
     
     cont = input("Deseja informar outra temperatura? [N/y]").strip().lower()
-    if cont != 'y':
+    if cont != 'y' or cont != 'Y':
         print("TCHAU!\n")
         break
-    print("\n")
