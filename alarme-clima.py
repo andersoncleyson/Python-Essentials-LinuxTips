@@ -10,19 +10,26 @@ info = {
     "umidade": None
 }
 
-
 while True:
-    for key in info.keys():
+    # condição de parada
+    # o dicionário está completamente preenchido
+    info_size = len(info.values())
+    filled_size = len([value for value in info.values() if value is not None])
+    if info_size == filled_size:
+        break # para o while
+
+    if all(info.values()): #[None, None]
+        break # para o while
+    for key in info.keys(): #["temperatura", "umidade"]
+        if info[key] is not None:
+            continue
         try:
-            #temp = float(input("Qual a temperatura no momento? ").strip())
-            info[key] = float(input(f"Qual a {key}? ").strip())
+            info[key] = int(input(f"{key}:").strip())
         except ValueError:
-            log.error(f"{key.capitalize()} inválida")
-            sys.exit(1)
+            log.error("%s inválidada, digite números", key)
+            break # para o for
 
-    temp = info["temperatura"]
-    umidade = info["umidade"]
-
+    temp, umidade = info.values() #unpacking [30. 90]
     if temp > 45:
         print("ALERTA! Perigo calor extremo")
     elif (temp * 3) >= umidade:
@@ -33,8 +40,8 @@ while True:
         print("Frio")
     elif temp < 0:
         print("Frio extremo")
-    
+        
     cont = input("Deseja informar outra temperatura? [N/y]").strip().lower()
     if cont != 'y' or cont != 'Y':
         print("TCHAU!\n")
-        break
+        break@Sha
